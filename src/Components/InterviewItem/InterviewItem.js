@@ -1,18 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const InterviewItem = props => {
-	const {details} = props;
+import TextField from '@material-ui/core/TextField';
 
-	return (
-		<div>
-			<span>Name: {details.name}</span>
-		</div>
-	);
+export default class InterviewItem extends React.Component {
+	constructor (props) {
+		super(props);
+
+		this.state = {
+			company: props.details.name
+		}
+	}
+
+	handleInputChange = event => {
+		console.log('Handle input change');
+	}
+
+	render () {
+		const {company} = this.state;
+
+		return (
+			<div className='interview-list-item-component'>
+				<TextField
+					fullWidth
+					id='Company'
+					label='Company'
+					onChange={this.handleInputChange}
+					value={company} />
+			</div>
+		);
+	};
 };
 
 InterviewItem.propTypes = {
 	details: PropTypes.object
-}
-
-export default InterviewItem;
+};
