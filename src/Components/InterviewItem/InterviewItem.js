@@ -44,9 +44,16 @@ export default class InterviewItem extends React.Component {
 		this.setState(newStateObj);
 	}
 
-	deleteRound = event => {
-		// const {rounds} = this.state; 
-		console.log('Deleting round');
+	deleteRound = index => {
+		const {rounds} = this.state;
+		// const updatedRounds = [...rounds.splice(index, 1)];
+
+		rounds.splice(index, 1)
+		console.log('Deleting round', index);
+
+		this.setState({
+			rounds
+		});
 	}
 
 	handleInputChange = event => {
@@ -160,7 +167,9 @@ export default class InterviewItem extends React.Component {
 										value={round.note} />
 								</div>
 								<Button
-									onClick={this.deleteRound}>
+									onClick={event => {
+										this.deleteRound(index)
+									}}>
 									Delete Round
 								</Button>
 							</div>
