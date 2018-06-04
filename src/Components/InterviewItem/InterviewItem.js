@@ -30,32 +30,37 @@ export default class InterviewItem extends React.Component {
 			rounds: nProps.details.rounds
 		})
 	}
+
+	// Rounds
 	addRound = event => {
-		const {rounds} = this.state;
+		const {index, onUpdate} = this.props;
 		const newStateObj = Object.assign({}, this.state);
 
-		console.log('adding round', event);
-
 		newStateObj.rounds.push({
-			id: rounds.length + 1
+			id: newStateObj.rounds.length + 1
 		});
 		newStateObj.dirty = true;
 
-		this.setState(newStateObj);
+		if (onUpdate) {
+			onUpdate(index, newStateObj)
+		}
 	}
-
 	deleteRound = index => {
-		const {rounds} = this.state;
-		// const updatedRounds = [...rounds.splice(index, 1)];
+		const {onUpdate} = this.props;
+		const newStateObj = Object.assign({}, this.state);
 
-		rounds.splice(index, 1)
-		console.log('Deleting round', index);
+		newStateObj.rounds.splice(index, 1)
 
-		this.setState({
-			rounds
-		});
+		if (onUpdate) {
+			onUpdate(index, newStateObj)
+		}
 	}
 
+	handleInterviewRoundChange = event => {
+
+	}
+
+	// Interactivity
 	handleInputChange = event => {
 		const {index, onUpdate} = this.props;
 		const {target} = event;
@@ -68,17 +73,10 @@ export default class InterviewItem extends React.Component {
 		if (onUpdate) {
 			onUpdate(index, newStateObj);
 		};
-		// this.setState(newStateObj);
 	}
 
-	handleInterviewRoundChange = event => {
 
-	}
-
-	handleInterviewUpdate = event => {
-		console.log('');
-	}
-
+	// Interview Methods
 	handleInterviewSave = event => {
 		const {onUpdate} = this.props;
 		
@@ -86,7 +84,6 @@ export default class InterviewItem extends React.Component {
 			onUpdate();
 		}
 	}
-
 	handleInterviewDelete = event => {
 		console.log('Handle Low level delete');
 		const {index, onDelete} = this.props;
@@ -104,12 +101,6 @@ export default class InterviewItem extends React.Component {
 				<Button
 					onClick={this.addRound}>
 					Add Round +
-				</Button>
-				<Button
-					color={'primary'}
-					onClick={this.handleInterviewSave}
-					disabled={!dirty} >
-					Save
 				</Button>
 				<Button
 					onClick={this.handleInterviewDelete}>
