@@ -37,7 +37,10 @@ export default class InterviewItem extends React.Component {
 		const newStateObj = Object.assign({}, this.state);
 
 		newStateObj.rounds.push({
-			id: newStateObj.rounds.length + 1
+			id: newStateObj.rounds.length + 1,
+			date: new Date(),
+			note: '',
+			contacts: []
 		});
 		newStateObj.dirty = true;
 
@@ -45,11 +48,11 @@ export default class InterviewItem extends React.Component {
 			onUpdate(index, newStateObj)
 		}
 	}
-	deleteRound = index => {
-		const {onUpdate} = this.props;
+	deleteRound = roundIndex => {
+		const {index, onUpdate} = this.props;
 		const newStateObj = Object.assign({}, this.state);
 
-		newStateObj.rounds.splice(index, 1)
+		newStateObj.rounds.splice(roundIndex, 1)
 
 		if (onUpdate) {
 			onUpdate(index, newStateObj)
