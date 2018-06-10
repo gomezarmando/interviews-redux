@@ -52,7 +52,8 @@ export default class InterviewItem extends React.Component {
 		const {index, onUpdate} = this.props;
 		const newStateObj = Object.assign({}, this.state);
 
-		newStateObj.rounds.splice(roundIndex, 1)
+		newStateObj.rounds.splice(roundIndex, 1);
+		newStateObj.dirty = true;
 
 		if (onUpdate) {
 			onUpdate(index, newStateObj);
@@ -64,6 +65,7 @@ export default class InterviewItem extends React.Component {
 		const newStateObj = Object.assign({}, this.state);
 
 		newStateObj.rounds[roundIndex][property] = value;
+		newStateObj.dirty = true;
 
 		if (onUpdate) {
 			onUpdate(index, newStateObj);
