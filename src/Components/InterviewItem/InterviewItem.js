@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames'
 
 import moment from 'moment';
 
@@ -13,7 +14,7 @@ export default class InterviewItem extends React.Component {
 		this.state = {
 			company: props.details.company,
 			date: props.details.date,
-			dirty: false,
+			dirty: props.details.dirty,
 			location: props.details.location,
 			recruiter: props.details.recruiter,
 			rounds: props.details.rounds
@@ -29,6 +30,19 @@ export default class InterviewItem extends React.Component {
 			recruiter: nProps.details.recruiter,
 			rounds: nProps.details.rounds
 		})
+	}
+
+	// Classes
+	getClasses = additionalClasses => {
+		const {dirty} = this.state;
+
+		return classnames(
+			'interview-list-item-component',
+			{
+				dirty: dirty
+			},
+			additionalClasses
+		);
 	}
 
 	// Rounds
@@ -48,6 +62,7 @@ export default class InterviewItem extends React.Component {
 			onUpdate(index, newStateObj)
 		}
 	}
+
 	deleteRound = roundIndex => {
 		const {index, onUpdate} = this.props;
 		const newStateObj = Object.assign({}, this.state);
@@ -89,13 +104,7 @@ export default class InterviewItem extends React.Component {
 
 
 	// Interview Methods
-	handleInterviewSave = event => {
-		const {onUpdate} = this.props;
-		
-		if(onUpdate) {
-			onUpdate();
-		}
-	}
+
 	handleInterviewDelete = event => {
 		console.log('Handle Low level delete');
 		const {index, onDelete} = this.props;
@@ -106,10 +115,11 @@ export default class InterviewItem extends React.Component {
 	}
 
 	render () {
+		const {className} = this.props;
 		const {company, date, dirty, location, recruiter, rounds} = this.state;
 
 		return (
-			<div className='interview-list-item-component'>
+			<div className={this.getClasses(className)}>
 				<Button
 					onClick={this.addRound}>
 					Add Round +
