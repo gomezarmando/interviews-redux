@@ -55,12 +55,19 @@ export default class InterviewItem extends React.Component {
 		newStateObj.rounds.splice(roundIndex, 1)
 
 		if (onUpdate) {
-			onUpdate(index, newStateObj)
+			onUpdate(index, newStateObj);
 		}
 	}
 
-	handleInterviewRoundChange = event => {
+	handleInterviewRoundChange = (roundIndex, property, value) => {
+		const {index, onUpdate} = this.props;
+		const newStateObj = Object.assign({}, this.state);
 
+		newStateObj.rounds[roundIndex][property] = value;
+
+		if (onUpdate) {
+			onUpdate(index, newStateObj);
+		}
 	}
 
 	// Interactivity
@@ -155,9 +162,13 @@ export default class InterviewItem extends React.Component {
 									<TextField
 										fullWidth
 										label='Description'
-										name='description'
+										name='note'
 										placeholder='Enter Interview details'
-										onChange={this.handleInterviewRoundChange}
+										onChange={event => {
+											const {target} = event;
+											const {value} = target
+											this.handleInterviewRoundChange(index, 'note', value);
+										}}
 										value={round.note} />
 								</div>
 								<Button
