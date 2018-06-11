@@ -67,7 +67,7 @@ class App extends Component {
     const updatedInterviewItems = [...interviewItems, {
       id: interviewItems.length + 1,
       date: new Date(),
-      location: 'Chicago',
+      location: '',
       company: '',
       recruiter: '',
       rounds: []
