@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import './App.css';
+
+import AppBar from '@material-ui/core/AppBar';
+import Button from '@material-ui/core/Button';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 
 import {InterviewList} from './Components';
 
@@ -74,9 +79,7 @@ class App extends Component {
   }
   
   deleteInterview = index => {
-    console.log('Top level Delete method - deleting: ', index);
     const interviewItems = [...this.state.interviewItems];
-    // const updatedInterviewItems = [...interviewItems.splice(index, 1)];
     interviewItems.splice(index, 1)
 
     this.setState({
@@ -85,7 +88,6 @@ class App extends Component {
   }
 
   updateInterview = (index, interview) => {
-    console.log('Top level Update method');
     const {interviewItems} = this.state;
     const updatedInterviewItems = [...interviewItems];
 
@@ -100,13 +102,30 @@ class App extends Component {
     const {interviewItems} = this.state;
 
     return (
-      <div className="App">
-        <InterviewList
-          items={interviewItems}
-          onAdd={this.addInterview}
-          onDelete={this.deleteInterview}
-          onUpdate={this.updateInterview} />
-      </div>
+      <CssBaseline>
+        <div className="App">
+          <AppBar
+            className='interview-list-app-bar'
+            color='secondary'
+            position='sticky' >
+            <Toolbar>
+              <Typography
+                color='default'
+                variant='title'>Interviews</Typography>
+              <Button
+                color="inherit"
+                disableRipple
+                onClick={this.addInterview}
+                variant='outlined'>Add Company +</Button>
+            </Toolbar>
+          </AppBar>
+          <InterviewList
+            items={interviewItems}
+            onAdd={this.addInterview}
+            onDelete={this.deleteInterview}
+            onUpdate={this.updateInterview} />
+        </div>
+      </CssBaseline>
     );
   }
 }

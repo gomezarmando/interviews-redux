@@ -1,8 +1,86 @@
-.App {
-  text-align: center;
-  padding: 0 20px;
+html, body, #root {
+  height: 100%;
 }
 
-.interview-list-item-component { 
+.App {
+  padding: 0;
+  background: #fafafa;
+  height: 100%;
+}
+
+.App header { 
   margin-bottom: 20px;
 }
+
+.App header h2 {
+  color:#fff;
+  flex: 1
+}
+
+.App .interview-list-app-bar {
+  background:  linear-gradient(135deg, rgba(85,140,230,1) 0%, rgba(94,189,187,1) 52%, rgba(103,235,147,1) 100%);
+}
+
+.App .interview-list-item-component { 
+  margin-bottom: 40px;
+  padding: 60px 10px 10px 10px;
+  color: #666;
+  position: relative;
+  background: white;
+}
+
+.App .interview-list-item-component-actions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.App .interview-list-item-component:last-child { 
+  margin: 0;
+}
+
+.App .interview-list-item-component input,
+.App .interview-list-item-component button {
+  color:#333;
+}
+
+.App .interview-list-item-component button {
+  border: 1px solid #999;
+}
+.App .interview-list-item-component-actions button:last-child {
+  margin-left: 10px;
+}
+.interview-list-item-component.dirty {
+  border: 1px solid #d2ffb8;
+}
+
+.App .interview-list-item-rounds-item {
+  padding: 10px 0;
+  margin: 0 0 10px 0;
+  position: relative;
+}
+
+.App .interview-list-item-rounds-item:hover .interview-list-item-round-actions {
+  display: block;
+}
+
+.App .interview-list-item-round-date {
+  font-size: 1.2em;
+  margin: 0 0 10px 0;
+  color:#666;
+}
+
+.App .interview-list-item-round-actions {
+  position: absolute;
+  display: none;
+  top: 10px;
+  right: 0;
+}
+
+.App .interview-list-item-round-details {
+
+}
+
+/* .interview-list-item-component-data {
+
+} */
