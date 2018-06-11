@@ -182,7 +182,7 @@ export default class InterviewItem extends React.Component {
 											onClick={event => {
 												this.deleteRound(index)
 											}}>
-											Delete Round
+											Delete
 										</Button>
 									</div>
 									<div className='interview-list-item-round-date'>{moment(round.date).format('dddd - M/D/YY - h:mm a')}</div>
