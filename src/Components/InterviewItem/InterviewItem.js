@@ -169,11 +169,11 @@ export default class InterviewItem extends React.Component {
 					</div>
 					<div className='interview-list-item-rounds'>
 						{
-							(rounds && rounds.length) &&
+							(rounds && rounds.length > 0) &&
 							<p>Interviews</p>
 						}
 						{
-							(rounds && rounds.length) && rounds.map((round, index) => (
+							(rounds && rounds.length > 0) && rounds.map((round, index) => (
 								<div
 									className='interview-list-item-rounds-item'
 									key={`interview-list-item-rounds-item-${index}`}>
@@ -199,7 +199,6 @@ export default class InterviewItem extends React.Component {
 											}}
 											value={round.note} />
 									</div>
-									
 								</div>
 							)) 
 						}
