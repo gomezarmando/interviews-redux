@@ -7,115 +7,92 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 
-export default class InterviewItem extends React.Component {
-	constructor (props) {
-		super(props);
+export const InterviewItem = (props) => {
+	
+	// // Classes
+	// getClasses = additionalClasses => {
+	// 	const {dirty} = this.state;
 
-		this.state = {
-			company: props.details.company,
-			date: props.details.date,
-			dirty: props.details.dirty,
-			location: props.details.location,
-			recruiter: props.details.recruiter,
-			rounds: props.details.rounds
-		}
-	}
-
-	componentWillReceiveProps (nProps) {
-		this.setState({
-			company: nProps.details.company,
-			date: nProps.details.date,
-			dirty: nProps.details.dirty,
-			location: nProps.details.location,
-			recruiter: nProps.details.recruiter,
-			rounds: nProps.details.rounds
-		})
-	}
-
-	// Classes
-	getClasses = additionalClasses => {
-		const {dirty} = this.state;
-
-		return classnames(
-			'interview-list-item-component',
-			{
-				dirty: dirty
-			},
-			additionalClasses
-		);
-	}
+	// 	return classnames(
+	// 		'interview-list-item-component',
+	// 		{
+	// 			dirty: dirty
+	// 		},
+	// 		additionalClasses
+	// 	);
+	// }
 
 	// Rounds
-	addRound = event => {
-		const {index, onUpdate} = this.props;
-		const newStateObj = Object.assign({}, this.state);
+	// addRound = event => {
+	// 	const {index, onUpdate} = this.props;
+	// 	const newStateObj = Object.assign({}, this.state);
 
-		newStateObj.rounds.push({
-			id: newStateObj.rounds.length + 1,
-			date: new Date(),
-			note: '',
-			contacts: []
-		});
-		newStateObj.dirty = true;
+	// 	newStateObj.rounds.push({
+	// 		id: newStateObj.rounds.length + 1,
+	// 		date: new Date(),
+	// 		note: '',
+	// 		contacts: []
+	// 	});
+	// 	newStateObj.dirty = true;
 
-		if (onUpdate) {
-			onUpdate(index, newStateObj)
-		}
-	}
+	// 	if (onUpdate) {
+	// 		onUpdate(index, newStateObj)
+	// 	}
+	// }
 
-	deleteRound = roundIndex => {
-		const {index, onUpdate} = this.props;
-		const newStateObj = Object.assign({}, this.state);
+	// deleteRound = roundIndex => {
+	// 	const {index, onUpdate} = this.props;
+	// 	const newStateObj = Object.assign({}, this.state);
 
-		newStateObj.rounds.splice(roundIndex, 1);
-		newStateObj.dirty = true;
+	// 	newStateObj.rounds.splice(roundIndex, 1);
+	// 	newStateObj.dirty = true;
 
-		if (onUpdate) {
-			onUpdate(index, newStateObj);
-		}
-	}
+	// 	if (onUpdate) {
+	// 		onUpdate(index, newStateObj);
+	// 	}
+	// }
 
-	handleInterviewRoundChange = (roundIndex, property, value) => {
-		const {index, onUpdate} = this.props;
-		const newStateObj = Object.assign({}, this.state);
+	// handleInterviewRoundChange = (roundIndex, property, value) => {
+	// 	const {index, onUpdate} = this.props;
+	// 	const newStateObj = Object.assign({}, this.state);
 
-		newStateObj.rounds[roundIndex][property] = value;
-		newStateObj.dirty = true;
+	// 	newStateObj.rounds[roundIndex][property] = value;
+	// 	newStateObj.dirty = true;
 
-		if (onUpdate) {
-			onUpdate(index, newStateObj);
-		}
-	}
+	// 	if (onUpdate) {
+	// 		onUpdate(index, newStateObj);
+	// 	}
+	// }
 
-	// Interactivity
-	handleInputChange = event => {
-		const {index, onUpdate} = this.props;
-		const {target} = event;
-		const {value, name} = target;
-		const newStateObj = Object.assign({}, this.state)
+	// // Interactivity
+	// handleInputChange = event => {
+	// 	const {index, onUpdate} = this.props;
+	// 	const {target} = event;
+	// 	const {value, name} = target;
+	// 	const newStateObj = Object.assign({}, this.state)
 
-		newStateObj[name] = value;
-		newStateObj.dirty = true;
+	// 	newStateObj[name] = value;
+	// 	newStateObj.dirty = true;
 
-		if (onUpdate) {
-			onUpdate(index, newStateObj);
-		};
-	}
+	// 	if (onUpdate) {
+	// 		onUpdate(index, newStateObj);
+	// 	};
+	// }
 
 
-	// Interview Methods
-	handleInterviewDelete = event => {
-		console.log('Handle Low level delete');
-		const {index, onDelete} = this.props;
+	// // Interview Methods
+	// handleInterviewDelete = event => {
+	// 	console.log('Handle Low level delete');
+	// 	const {index, onDelete} = this.props;
 
-		if(onDelete && index >= 0) {
-			onDelete(index);
-		}
-	}
+	// 	if(onDelete && index >= 0) {
+	// 		onDelete(index);
+	// 	}
+	// }
 
-	render () {
-		const {className} = this.props;
-		const {company, date, dirty, location, recruiter, rounds} = this.state;
+	// return () 
+	// 	const {className} = this.props;
+	// 	const {company, date, dirty, location, recruiter, rounds} = this.state;
 
 		return (
 			<Fragment>
@@ -206,7 +183,7 @@ export default class InterviewItem extends React.Component {
 				</div>
 			</Fragment>
 		);
-	};
+	// };
 };
 
 InterviewItem.propTypes = {

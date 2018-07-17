@@ -8,6 +8,17 @@ export const add_company = (company, location, recruiter) => ({
 	rounds: []
 })
 
+export const delete_interview = (id) => ({
+	type: 'DELETE_INTERVIEW',
+	id
+})
+
+export const update_interview = (id, note) => ({
+	type: 'UPDATE_INTERVIEW',
+	id,
+	note
+})
+
 export const add_interview = (id, note) => ({
 	type: 'ADD_INTERVIEW',
 	id,

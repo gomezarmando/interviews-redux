@@ -1,7 +1,9 @@
+import interviews from './interviews';
+
 const companies = (state = [], action) => {
 	switch (action.type) {
 		case 'ADD_COMPANY':
-			console.log('triggered copmany');
+			console.log('triggered copmany', [state, action]);
 			return [
 				...state,
 				{
@@ -10,7 +12,7 @@ const companies = (state = [], action) => {
 					date: action.date,
 					location: action.location,
 					recruiter: action.recruiter,
-					rounds: []
+					rounds: interviews([], action)
 				}
 			];
 		default: 
